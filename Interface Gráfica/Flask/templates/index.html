@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Flask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Calculadora Flask</h2>
+
+<form method="post">
+    <input type="text" name="num1" placeholder="Número 1" required>
+    <input type="text" name="num2" placeholder="Número 2" required>
+    
+    <select name="operacao" required>
+        <option value="adição">+</option>
+        <option value="subtração">-</option>
+        <option value="multiplicação">*</option>
+        <option value="divisão">/</option>
+    </select>
+
+    <button type="submit">Calcular</button>
+</form>
+
+{% if resultado is not none %}
+    <div class="resultado">
+        Resultado: {{ resultado }}
+    </div>
+{% endif %}
+
+</body>
+</html>
