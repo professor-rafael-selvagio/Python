@@ -2,11 +2,14 @@ import tkinter as tk
 from tkinter import messagebox
 
 def mostrar_saudacao():
-    nome = entrada_nome.get()  # Obtém o nome inserido pelo usuário
+    # Obtém o nome inserido pelo usuário
+    nome = entrada_nome.get()  
     if nome:
-        messagebox.showinfo("Saudação", f"Olá, {nome}!")  # Exibe uma mensagem de saudação
+        # Exibe uma mensagem de saudação
+        messagebox.showinfo("Saudação", f"Olá, {nome}!")  
     else:
-        messagebox.showwarning("Atenção", "Por favor, insira seu nome!")  # Aviso caso o nome não seja inserido
+        # Aviso caso o nome não seja inserido
+        messagebox.showwarning("Atenção", "Por favor, insira seu nome!")  
 
 # Cria a janela principal
 janela = tk.Tk()

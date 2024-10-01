@@ -16,7 +16,8 @@ janela.geometry("800x600")
 
 # Campo de entrada
 entrada = tk.Entry(janela, font=("Arial", 30), width=64)
-entrada.grid(row=0, column=0, columnspan=4, padx=10, pady=10)  # Coloca a entrada na primeira linha
+# Coloca a entrada na primeira linha
+entrada.grid(row=0, column=0, columnspan=4, padx=10, pady=10)  
 
 # Lista de botões
 botoes = [
