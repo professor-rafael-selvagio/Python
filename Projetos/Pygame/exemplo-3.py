@@ -120,7 +120,7 @@ def game():
     pygame.display.flip()
 
     # Espera antes de fechar
-    pygame.time.wait(3000)
+    pygame.time.wait(10000)
     pygame.quit()
 
 if __name__ == "__main__":

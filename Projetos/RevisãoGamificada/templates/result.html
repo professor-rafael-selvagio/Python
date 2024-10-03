@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Resultados</h1>
+    <p>Sua pontuação: <span id="score">0</span>/{{ total_questions }}</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pergunta</th>
+                <th>Sua Resposta</th>
+                <th>Correta?</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTableBody">
+            <!-- Aqui vão as perguntas e respostas -->
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('index') }}">Reiniciar</a>
+{% endblock %}
+
+<script>
+    // Função para carregar e exibir os resultados salvos no localStorage
+    function loadResults() {
+        const storedResults = JSON.parse(localStorage.getItem('quizResults')) || [];
+        const resultsTableBody = document.getElementById('resultsTableBody');
+        let score = 0;
+
+        storedResults.forEach((result, index) => {
+            const isCorrect = result.userAnswer === result.correctAnswer;
+            if (isCorrect) score++;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${result.question}</td>
+                <td class="${isCorrect ? 'text-success' : 'text-danger'}">${result.userAnswer}</td>
+                <td>${isCorrect ? 'Sim' : 'Não'}</td>
+            `;
+            resultsTableBody.appendChild(row);
+        });
+
+        document.getElementById('score').innerText = score;
+    }
+
+    // Chama a função para carregar os resultados ao abrir a página
+    document.addEventListener('DOMContentLoaded', loadResults);
+</script>

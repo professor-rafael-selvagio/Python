@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Quiz de Power BI</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Quiz de Power BI</h1>
+
+        <h2>Pergunta {{ question_number }} de 20</h2>
+        <p class="lead text-center">{{ question.question if question else "Quiz finalizado!" }}</p>
+
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <form id="quizForm" onsubmit="return submitAnswer(event)">
+                    <input type="hidden" name="current_question_index" value="{{ question_number - 1 }}">
+                    <table id="optionsTable" class="table">
+                        <tbody>
+                            {% if question.options %}
+                                {% for option in question.options %}
+                                    <tr>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="answer" value="{{ option }}" id="{{ option }}" required>
+                                        </td>
+                                        <td class="text-left">
+                                            <label class="form-check-label" for="{{ option }}">{{ option }}</label>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="answer" value="True" id="true" required>
+                                    </td>
+                                    <td class="text-left">
+                                        <label class="form-check-label" for="true">Verdadeiro</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="answer" value="False" id="false" required>
+                                    </td>
+                                    <td class="text-left">
+                                        <label class="form-check-label" for="false">Falso</label>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <p id="feedback" class="mt-3 text-center"></p>
+
+        <form id="nextQuestionForm" method="GET" action="{{ url_for('next_question') }}" onsubmit="showOptions()" style="display: none;">
+            <button type="submit" class="btn btn-secondary btn-block">Próxima Pergunta</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function submitAnswer(event) {
+            event.preventDefault(); // Evita o refresh da página
+            const formData = new FormData(document.getElementById('quizForm'));
+
+            fetch("{{ url_for('submit') }}", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Atualiza o feedback na página
+                document.getElementById('feedback').innerText = data.feedback;
+                document.getElementById('optionsTable').style.display = 'none'; // Oculta a tabela de opções
+
+                // Salva os dados da próxima pergunta para serem utilizados quando o usuário clicar em "Próxima Pergunta"
+                sessionStorage.setItem('nextQuestionData', JSON.stringify(data));
+
+                // Mostra o botão "Próxima Pergunta" se houver uma próxima pergunta
+                if (data.show_next_button) {
+                    document.getElementById('nextQuestionForm').style.display = 'block';
+                } else {
+                    document.getElementById('nextQuestionForm').style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+        }
+
+        function showOptions() {
+            const nextQuestionData = JSON.parse(sessionStorage.getItem('nextQuestionData'));
+            if (nextQuestionData) {
+                document.getElementById('feedback').innerText = ''; // Limpa o feedback
+                document.getElementById('optionsTable').style.display = 'table'; // Mostra a tabela de opções
+
+                // Atualiza a pergunta na página
+                const questionContainer = document.querySelector('.lead.text-center');
+                questionContainer.innerText = nextQuestionData.question.question;
+
+                const optionsTableBody = document.querySelector('#optionsTable tbody');
+                optionsTableBody.innerHTML = ''; // Limpa as opções anteriores
+
+                nextQuestionData.question.options.forEach(option => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="text-center">
+                            <input class="form-check-input" type="radio" name="answer" value="${option}" id="${option}" required>
+                        </td>
+                        <td class="text-left">
+                            <label class="form-check-label" for="${option}">${option}</label>
+                        </td>
+                    `;
+                    optionsTableBody.appendChild(row);
+                });
+
+                sessionStorage.removeItem('nextQuestionData'); // Remove os dados da próxima pergunta
+            }
+        }
+
+        function showResults() {
+            const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || [];
+            const questions = JSON.parse(sessionStorage.getItem('questions')) || [];
+
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = ''; // Limpa resultados anteriores
+
+            let score = 0;
+
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index] || 'Não respondida';
+                const correctAnswer = question.answer;
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+
+                const resultRow = document.createElement('tr');
+                resultRow.innerHTML = `
+                    <td>${question.question}</td>
+                    <td class="${userAnswer === correctAnswer ? 'text-success' : 'text-danger'}">${userAnswer}</td>
+                    <td class="text-success">${correctAnswer}</td>
+                `;
+                resultsContainer.appendChild(resultRow);
+            });
+
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.innerText = `Sua pontuação até agora: ${score}/${questions.length}`;
+            resultsContainer.parentElement.style.display = 'block'; // Mostra a tabela de resultados
+        }
+
+    </script>
+</body>
+</html>

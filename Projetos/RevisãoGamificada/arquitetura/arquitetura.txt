@@ -1,0 +1,10 @@
+/RevisaoGamificada
+│
+├── app.py                # Arquivo principal do Flask
+├── questions.py          # Perguntas e respostas
+├── templates/            # Pasta para templates HTML
+│   ├── index.html        # Página inicial com o quiz
+│   ├── result.html       # Página para mostrar o resultado
+│   └── layout.html       # Layout base
+└── static/               # Pasta para arquivos estáticos (CSS, JS)
+    └── style.css         # Arquivo CSS para estilização
