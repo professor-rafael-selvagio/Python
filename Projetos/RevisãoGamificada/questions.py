@@ -43,6 +43,27 @@ true_false_questions = [
     {
         "question": "O Power BI só é útil para empresas de grande porte.",
         "answer": False
+    },
+    
+    {
+        "question": "No Power BI, um gráfico de pizza é usado para mostrar a variação ao longo do tempo.",
+        "answer": False
+    },
+    {
+        "question": "As funções DAX no Power BI só podem ser usadas em colunas calculadas.",
+        "answer": False
+    },
+    {
+        "question": "No Power BI, você pode criar colunas e medidas personalizadas usando DAX.",
+        "answer": True
+    },
+    {
+        "question": "O Power BI oferece suporte à criação de painéis em tempo real.",
+        "answer": True
+    },
+    {
+        "question": "A versão gratuita do Power BI possui todas as funcionalidades da versão paga.",
+        "answer": False
     }
 ]
 
@@ -97,6 +118,58 @@ multiple_choice_questions = [
         "question": "Qual a importância de se utilizar o Power BI para análise de dados?",
         "options": ["Facilitar o trabalho dos desenvolvedores.", "Substituir o uso de planilhas eletrônicas.", "Transformar dados em insights valiosos para tomada de decisões.", "Criar apresentações visualmente atraentes."],
         "answer": "Transformar dados em insights valiosos para tomada de decisões."
+    },
+
+
+    {
+        "question": "Qual das seguintes funções é usada para calcular a média no Power BI?",
+        "options": ["AVERAGE", "SUM", "COUNT", "MIN"],
+        "answer": "AVERAGE"
+    },
+    {
+        "question": "Qual desses gráficos NÃO é um tipo de visualização no Power BI?",
+        "options": ["Gráfico de Rosca", "Gráfico de Cascata", "Gráfico de Funil", "Gráfico de Pizza 3D"],
+        "answer": "Gráfico de Pizza 3D"
+    },
+    {
+        "question": "Qual a principal função do Power Query no Power BI?",
+        "options": ["Criar dashboards interativos.", "Transformar e limpar dados antes da análise.", "Publicar relatórios no Power BI Service.", "Criar relatórios financeiros complexos."],
+        "answer": "Transformar e limpar dados antes da análise."
+    },
+    {
+        "question": "Qual o nome da funcionalidade do Power BI que permite conectar várias tabelas relacionadas?",
+        "options": ["Relacionamentos", "Medidas", "Colunas Calculadas", "Grupos"],
+        "answer": "Relacionamentos"
+    },
+    {
+        "question": "Em que cenário é mais útil utilizar um gráfico de linha no Power BI?",
+        "options": ["Comparar categorias diferentes.", "Analisar dados ao longo do tempo.", "Visualizar uma única métrica.", "Mostrar proporções de um todo."],
+        "answer": "Analisar dados ao longo do tempo."
+    },
+    {
+        "question": "Qual destes recursos NÃO está disponível na versão gratuita do Power BI?",
+        "options": ["Criação de dashboards", "Agendamento de atualização de dados", "Importação de dados do Excel", "Criação de relatórios personalizados"],
+        "answer": "Agendamento de atualização de dados"
+    },
+    {
+        "question": "Qual destes elementos é necessário para criar uma medida no Power BI?",
+        "options": ["Power Query", "Funções DAX", "Relacionamentos", "Filtros"],
+        "answer": "Funções DAX"
+    },
+    {
+        "question": "O que significa a sigla 'ETL', amplamente utilizada no contexto do Power BI?",
+        "options": ["Extract, Transform, Load", "Export, Test, Load", "Evaluate, Transfer, Load", "Edit, Transform, Link"],
+        "answer": "Extract, Transform, Load"
+    },
+    {
+        "question": "Qual o principal benefício de usar 'Medidas' no Power BI?",
+        "options": ["Armazenar grandes quantidades de dados.", "Realizar cálculos dinâmicos em tempo de execução.", "Criar gráficos personalizados.", "Gerar relatórios em tempo real."],
+        "answer": "Realizar cálculos dinâmicos em tempo de execução."
+    },
+    {
+        "question": "Qual destes elementos NÃO pode ser utilizado em um gráfico de pizza no Power BI?",
+        "options": ["Categoria", "Legenda", "Valor", "Título Interativo"],
+        "answer": "Título Interativo"
     }
 ]
 

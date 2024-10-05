@@ -14,7 +14,7 @@ def enviar_mensagens():
     codigo = dados.get('codigo')
 
     # Validação do código
-    if codigo != "454":  # Substitua "454" pelo código correto
+    if codigo != "454":
         return jsonify({'erro': 'Código inválido!'}), 400
 
     # Ler planilha CSV e guardar informações sobre nome, telefone e mensagem
@@ -24,22 +24,25 @@ def enviar_mensagens():
     caminho_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'alunos.csv')
     
     try:
-        df = pd.read_csv(caminho_csv)  # Lê o arquivo CSV
-        for index, linha in df.iterrows():  # Itera sobre as linhas do DataFrame
-            nome = linha['nome']  # Nome do aluno
-            telefone = linha['whatsapp']  # Telefone do aluno
-            status = linha['status']  # Status do aluno
+        df = pd.read_csv(caminho_csv) 
+        for index, linha in df.iterrows(): 
+            nome = linha['nome']
+            telefone = linha['whatsapp']
+            status = linha['status']
 
             # Enviar mensagem apenas para alunos com status "real"
             if status.lower() == 'real':
                 msg = "Essa mensagem está sendo enviada através do Backend do Programa desenvolvido usando Python e Flask. Obrigado!"
-                mensagem = f'Olá {nome}. A origem da mensagem a seguir foi um arquivo CSV: {msg}'
+                mensagem = f'Olá {nome}. A origem da mensagem a seguir foi um arquivo CSV: {msg}.'
+                mensagem+= 'Desejo a você um excelente final de semana, nos vemos na nossa última aula, dia 19/10/2024'
 
                 # Criar links personalizados do WhatsApp e enviar mensagens
                 try:
-                    link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
+                    link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone=+{telefone}&text={quote(mensagem)}'
                     webbrowser.open(link_mensagem_whatsapp)
-                    sleep(10)
+                    print(f"Abrindo WhatsApp par ao contato {nome}")
+                    #print(link_mensagem_whatsapp)
+                    sleep(20)
                     pyautogui.press('enter')
 
                     # Adiciona o aluno à lista

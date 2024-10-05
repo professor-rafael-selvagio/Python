@@ -7,7 +7,7 @@ caminho_do_arquivo = sistema_operacional.getcwd() + '/07-Modulo-LerExcel/VendasD
 arquivo = pandas.read_excel(caminho_do_arquivo)
 
 # Mostrando as primeiras 5 linhas
-#print(pandas.head())
+#print(arquivo.head())
 
 # Somar o total da coluna Valor Total
 soma_total = arquivo['Valor Total'].sum()
