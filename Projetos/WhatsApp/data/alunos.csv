@@ -1,18 +1,23 @@
-nome,whatsapp,status
-Felipe,5516997250737,real
-Leiliane,5514996756080,real
-Luan,5516991033437,real
-Luis Otavio,5516993424153,real
-Anderson,5516992147667,real
-Douglas,5516996239337,real
-Giovanni,5516997403394,real
-João Vitor,5516982389324,real
-Anna,55169811110433,real
-Mauricio,5516993221936,real
-Renato,5516997631974,real
-Rosana,5516981599178,real
-Henrique,5516992138423,real
-Diego,5516991512061,real
-Estudante,5516996012300,real
-Estudante,5516982468462,real
-Estudante,5516981592688,real
+nome,whatsapp,status,idade,cep,logradouro,bairro,localidade,uf,ddd
+Felipe,5516997250737,real,,,,,,,
+Leiliane,5514996756080,real,,,,,,,
+Luan,5516991033437,real,,,,,,,
+Luis Otavio,5516993424153,real,,,,,,,
+Anderson,5516992147667,real,,,,,,,
+Douglas,5516996239337,real,,,,,,,
+Giovanni,5516997403394,real,,,,,,,
+João Vitor,5516982389324,real,,,,,,,
+Anna,55169811110433,real,,,,,,,
+Mauricio,5516993221936,real,,,,,,,
+Renato,5516997631974,real,,,,,,,
+Rosana,5516981599178,real,,,,,,,
+Henrique,5516992138423,real,,,,,,,
+Diego,5516991512061,real,,,,,,,
+Estudante,5516996012300,real,,,,,,,
+Estudante,5516982468462,real,,,,,,,
+Estudante,5516981592688,real,,,,,,,
+John Brown,5516991161860,fake,47.0,13564-350,Rua Américo Jacomino Canhoto,Jardim Nova Santa Paula,São Carlos,SP,16.0
+Taylor Zavala,5516993864540,fake,40.0,13561-260,Avenida Tancredo de Almeida Neves,Parque Santa Mônica,São Carlos,SP,16.0
+James Parker,5516997882909,fake,68.0,13562-420,Avenida Bruno Ruggiero Filho,Parque Santa Felícia Jardim,São Carlos,SP,16.0
+Teresa Spence,5516990262249,fake,36.0,13561-090,Rua Professora Nicoleta Stella Germano,Jardim Paraíso,São Carlos,SP,16.0
+Daniel Carr,5516994827438,fake,37.0,13568-180,Rua Maria Vilani Petrilli,Jardim Tangará,São Carlos,SP,16
