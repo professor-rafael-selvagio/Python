@@ -3,14 +3,14 @@ import gerador_dados as gd
 from conexao import obter_proximo_id  # Importa a função para obter IDs
 from datetime import datetime
 
-#gd.gerar_deletes()
+gd.gerar_deletes('Módulos e Pacotes/12-DataFaker/sql/')
 
 # Obter os próximos IDs disponíveis
 proximos_ids = obter_proximo_id()
 
 # Formatar o nome do arquivo com data e hora
 agora = datetime.now()
-nome_arquivo = f"DataFaker/sql/arquivo_{agora.strftime('%Y%m%d_%H%M%S')}.sql"
+nome_arquivo = f"Módulos e Pacotes/12-DataFaker/sql/arquivo_{agora.strftime('%Y%m%d_%H%M%S')}.sql"
 
 # Abrir o arquivo em modo de escrita
 with open(nome_arquivo, 'w') as f:

@@ -69,7 +69,7 @@ def gerar_inserts_comentarios(qtd=50, proximos_ids=None):
         proximos_ids["Comentarios"] += 1  # Incrementar o próximo ID
     return inserts
 
-def gerar_deletes():
+def gerar_deletes(caminho):
     # Definindo as tabelas e a ordem correta para deletar
     tabelas = {
         "Comentarios": "DELETE FROM Comentarios;",
@@ -79,7 +79,7 @@ def gerar_deletes():
     }
 
     # Formatar o nome do arquivo de deletes
-    nome_arquivo = 'DataFaker/sql/deletes.sql'
+    nome_arquivo = caminho + 'deletes.sql'
 
     # Abrindo arquivo para escrita
     with open(nome_arquivo, 'w') as f:
